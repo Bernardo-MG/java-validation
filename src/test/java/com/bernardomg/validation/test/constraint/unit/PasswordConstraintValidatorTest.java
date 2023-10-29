@@ -1,5 +1,5 @@
 
-package com.bernardomg.validation.constraint.test;
+package com.bernardomg.validation.test.constraint.unit;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
