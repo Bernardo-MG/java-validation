@@ -24,15 +24,24 @@
 
 package com.bernardomg.validation.failure.exception;
 
+/**
+ * Base exception for failure exceptions.
+ *
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ */
 public abstract class FailureException extends RuntimeException {
 
-    private static final long serialVersionUID = 5252694690217611607L;
+    /**
+     * Generated serial.
+     */
+    private static final long serialVersionUID = -3251278703501703696L;
 
-    public FailureException() {
+    protected FailureException() {
         super();
     }
 
-    public FailureException(final String message) {
+    protected FailureException(final String message) {
         super(message);
     }
 

@@ -37,8 +37,14 @@ import lombok.Value;
 @Builder
 public final class ImmutableFailure implements Failure {
 
+    /**
+     * Code identifying the failure.
+     */
     private final String code;
 
+    /**
+     * The failure message.
+     */
     private final String message;
 
 }

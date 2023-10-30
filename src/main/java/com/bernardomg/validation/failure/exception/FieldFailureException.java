@@ -31,11 +31,23 @@ import com.bernardomg.validation.failure.FieldFailure;
 
 import lombok.Getter;
 
+/**
+ * Exception for field failures. Contains multiple field failures, all for the same object.
+ *
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ */
 @Getter
 public class FieldFailureException extends FailureException {
 
-    private static final long              serialVersionUID = 5252694690217611607L;
+    /**
+     * Generated serial.
+     */
+    private static final long              serialVersionUID = -2003757248463512577L;
 
+    /**
+     * All the failures for the validated object.
+     */
     private final Collection<FieldFailure> failures;
 
     public FieldFailureException(final Collection<FieldFailure> fails) {
@@ -44,10 +56,10 @@ public class FieldFailureException extends FailureException {
         failures = fails;
     }
 
-    public FieldFailureException(final FieldFailure err) {
-        super(err.getMessage());
+    public FieldFailureException(final FieldFailure fail) {
+        super(fail.getMessage());
 
-        failures = Arrays.asList(err);
+        failures = Arrays.asList(fail);
     }
 
 }
