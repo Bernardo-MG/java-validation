@@ -45,7 +45,7 @@ public final class ImmutableFieldFailure implements FieldFailure {
     private final String      code;
 
     /**
-     * Name of the field which failed the validation
+     * Name of the field which failed the validation.
      */
     private final String      field;
 
