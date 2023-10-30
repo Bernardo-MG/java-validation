@@ -6,22 +6,20 @@ import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import com.bernardomg.validation.AbstractValidator;
 import com.bernardomg.validation.failure.exception.FieldFailureException;
+import com.bernardomg.validation.test.util.EmptyTestValidator;
 import com.bernardomg.validation.test.util.TestValidator;
 
 @DisplayName("AbstractValidator")
 public class AbstractValidatorTest {
 
-    final AbstractValidator<String> testValidator = new TestValidator();
-
     @Test
-    @DisplayName("Throws the expected exception")
-    void testIsValid_AllLowerCase() {
+    @DisplayName("When there are validation failures it throws the expected exception")
+    void testValidate_failures() {
         final ThrowingCallable      execution;
         final FieldFailureException exception;
 
-        execution = () -> testValidator.validate("abc");
+        execution = () -> new TestValidator().validate("abc");
 
         Assertions.assertThatThrownBy(execution)
             .isInstanceOf(FieldFailureException.class);
@@ -30,6 +28,17 @@ public class AbstractValidatorTest {
 
         Assertions.assertThat(exception.getFailures())
             .hasSize(1);
+    }
+
+    @Test
+    @DisplayName("When there are no validation failures it throws no exception")
+    void testValidate_noFailures() {
+        final ThrowingCallable execution;
+
+        execution = () -> new EmptyTestValidator().validate("abc");
+
+        Assertions.assertThatCode(execution)
+            .doesNotThrowAnyException();
     }
 
 }
