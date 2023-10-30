@@ -26,6 +26,12 @@ package com.bernardomg.validation;
 
 public interface Validator<T> {
 
+    /**
+     * Throws an {@code FailureException} if any error is found.
+     *
+     * @param obj
+     *            objec to validate
+     */
     public void validate(final T obj);
 
 }
