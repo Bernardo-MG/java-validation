@@ -41,17 +41,13 @@ import jakarta.validation.ConstraintValidatorContext;
 
 public final class PasswordConstraintValidator implements ConstraintValidator<StrongPassword, String> {
 
-    @Override
-    public void initialize(final StrongPassword arg0) {}
+    private final PasswordValidator validator;
 
-    @Override
-    public final boolean isValid(final String password, final ConstraintValidatorContext context) {
-        final List<Rule>        rules;
-        final PasswordValidator validator;
-        final RuleResult        result;
-        final boolean           valid;
+    public PasswordConstraintValidator() {
+        super();
 
-        rules = new ArrayList<>();
+        final List<Rule> rules = new ArrayList<>();
+
         // Rule 1: Password length should be in between
         // 8 and 16 characters
         rules.add(new LengthRule(8, 16));
@@ -67,6 +63,12 @@ public final class PasswordConstraintValidator implements ConstraintValidator<St
         rules.add(new CharacterRule(EnglishCharacterData.Special, 1));
 
         validator = new PasswordValidator(rules);
+    }
+
+    @Override
+    public final boolean isValid(final String password, final ConstraintValidatorContext context) {
+        final RuleResult result;
+        final boolean    valid;
 
         result = validator.validate(new PasswordData(password));
         if (result.isValid()) {
