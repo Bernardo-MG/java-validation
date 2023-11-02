@@ -5,6 +5,7 @@ on:
     types: [created]
 
 permissions: 
+  contents: write
   packages: write
 
 jobs:
