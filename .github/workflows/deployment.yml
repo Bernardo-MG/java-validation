@@ -4,6 +4,9 @@ on:
   release:
     types: [created]
 
+permissions: 
+  packages: write
+
 jobs:
   github:
     name: Github
