@@ -48,6 +48,7 @@ public final class PasswordConstraintValidator implements ConstraintValidator<St
 
         final List<Rule> rules = new ArrayList<>();
 
+        // TODO: Make this configurable on annotation
         // Rule 1: Password length should be in between
         // 8 and 16 characters
         rules.add(new LengthRule(8, 16));
