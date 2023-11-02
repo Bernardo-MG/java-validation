@@ -24,8 +24,23 @@
 
 package com.bernardomg.validation;
 
+/**
+ * Validator to ensure an object fulfills a set of rules. It is expected to throw a {@code FailureException} with all
+ * the failures.
+ *
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ * @param <T>
+ *            type being validated
+ */
 public interface Validator<T> {
 
+    /**
+     * Throws an {@code FailureException} if any error is found.
+     *
+     * @param obj
+     *            objec to validate
+     */
     public void validate(final T obj);
 
 }

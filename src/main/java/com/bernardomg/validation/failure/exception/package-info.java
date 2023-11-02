@@ -22,29 +22,8 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.validation.failure;
-
-import lombok.Builder;
-import lombok.Value;
-
 /**
- * Immutable failure object.
- *
- * @author Bernardo Mart&iacute;nez Garrido
- *
+ * Validation failure exceptions.
  */
-@Value
-@Builder
-public final class ImmutableFailure implements Failure {
 
-    /**
-     * Code identifying the failure.
-     */
-    private final String code;
-
-    /**
-     * The failure message.
-     */
-    private final String message;
-
-}
+package com.bernardomg.validation.failure.exception;

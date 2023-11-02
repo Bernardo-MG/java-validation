@@ -22,29 +22,27 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.validation.failure;
-
-import lombok.Builder;
-import lombok.Value;
+package com.bernardomg.validation.failure.exception;
 
 /**
- * Immutable failure object.
+ * Base exception for failure exceptions.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-@Value
-@Builder
-public final class ImmutableFailure implements Failure {
+public abstract class FailureException extends RuntimeException {
 
     /**
-     * Code identifying the failure.
+     * Generated serial.
      */
-    private final String code;
+    private static final long serialVersionUID = -3251278703501703696L;
 
-    /**
-     * The failure message.
-     */
-    private final String message;
+    protected FailureException() {
+        super();
+    }
+
+    protected FailureException(final String message) {
+        super(message);
+    }
 
 }

@@ -89,9 +89,9 @@ public interface FieldFailure extends Failure, Serializable {
     public String getField();
 
     /**
-     * Returns the value of the field which failed the validation.
+     * Returns the value which failed the validation. This is stored in the field related to this failure.
      *
-     * @return the value of the field which failed the validation
+     * @return the value which failed the validation
      */
     public Object getValue();
 
