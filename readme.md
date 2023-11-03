@@ -2,6 +2,8 @@
 
 Validation tools.
 
+[![Maven Central](https://img.shields.io/maven-central/v/com.bernardomg.framework/validation.svg)][maven-repo]
+
 [![Release docs](https://img.shields.io/badge/docs-release-blue.svg)][site-release]
 [![Development docs](https://img.shields.io/badge/docs-develop-blue.svg)][site-develop]
 
@@ -49,6 +51,7 @@ If you wish to fork or modify the code, visit the [GitHub project page][scm], wh
 
 The project has been released under the [MIT License][license].
 
+[maven-repo]: http://mvnrepository.com/artifact/com.bernardomg.framework/validation
 [issues]: https://github.com/bernardo-mg/java-validation/issues
 [javadoc-develop]: https://docs.bernardomg.com/development/maven/java-validation/apidocs
 [javadoc-release]: https://docs.bernardomg.com/maven/java-validation/apidocs
