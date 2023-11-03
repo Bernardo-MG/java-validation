@@ -19,7 +19,7 @@
    <!-- **************** PROJECT INFO **************** -->
    <!-- ********************************************** -->
 
-   <groupId>com.bernardomg</groupId>
+   <groupId>com.bernardomg.framework</groupId>
    <artifactId>validation</artifactId>
    <version>0.1.0</version>
    <packaging>jar</packaging>
