@@ -199,6 +199,8 @@
       <!-- ================= MAVEN SITE ================= -->
       <!-- ============================================== -->
       <site.skin.version>2.3.2</site.skin.version>
+      <mavenURL>http://mvnrepository.com/artifact/com.bernardomg.framework/validation</mavenURL>
+      <githubArtifactURL><![CDATA[https://github.com/Bernardo-MG?tab=packages&amp;repo_name=java-validation]]></githubArtifactURL>
    </properties>
 
    <!-- ********************************************** -->
