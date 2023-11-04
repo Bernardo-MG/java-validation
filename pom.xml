@@ -12,7 +12,7 @@
    <parent>
       <groupId>com.bernardomg.maven</groupId>
       <artifactId>base-pom</artifactId>
-      <version>1.5.4</version>
+      <version>1.5.6</version>
    </parent>
 
    <!-- ********************************************** -->
@@ -186,9 +186,9 @@
       <jakarta.validation.version>3.0.2</jakarta.validation.version>
       <junit.version>5.10.0</junit.version>
       <log4j.version>2.21.1</log4j.version>
-      <lombok.version>1.18.28</lombok.version>
-      <mockito.version>5.6.0</mockito.version>
-      <passay.version>1.6.3</passay.version>
+      <lombok.version>1.18.30</lombok.version>
+      <mockito.version>5.7.0</mockito.version>
+      <passay.version>1.6.4</passay.version>
       <slf4j.version>2.0.9</slf4j.version>
       <!-- ============================================== -->
       <!-- ============ PLUGIN CONFIGURATION ============ -->
