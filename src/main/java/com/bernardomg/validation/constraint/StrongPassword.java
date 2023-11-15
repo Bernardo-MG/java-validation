@@ -47,7 +47,7 @@ public @interface StrongPassword {
 
     Class<?>[] groups() default {};
 
-    String message() default "Invalid Password";
+    String message() default "Weak password";
 
     Class<? extends Payload>[] payload() default {};
 
