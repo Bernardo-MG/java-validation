@@ -295,6 +295,15 @@
          <version>${passay.version}</version>
       </dependency>
       <!-- ============================================== -->
+      <!-- ================ TEST SUPPORT ================ -->
+      <!-- ============================================== -->
+      <dependency>
+         <!-- AssertJ -->
+         <groupId>org.assertj</groupId>
+         <artifactId>assertj-core</artifactId>
+         <scope>provided</scope>
+      </dependency>
+      <!-- ============================================== -->
       <!-- ======= TEST ENVIRONMENT DEPENDENCIES ======== -->
       <!-- ============================================== -->
       <dependency>
@@ -313,12 +322,6 @@
          <!-- Mockito JUnit Jupiter -->
          <groupId>org.mockito</groupId>
          <artifactId>mockito-junit-jupiter</artifactId>
-         <scope>test</scope>
-      </dependency>
-      <dependency>
-         <!-- AssertJ -->
-         <groupId>org.assertj</groupId>
-         <artifactId>assertj-core</artifactId>
          <scope>test</scope>
       </dependency>
    </dependencies>
