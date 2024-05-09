@@ -22,29 +22,58 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.validation.failure;
-
-import lombok.Builder;
-import lombok.Value;
+package com.bernardomg.validation.domain.model;
 
 /**
- * Immutable failure object.
+ * Failure object. Containing a message to tell which error ocurred.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-@Value
-@Builder
-public final class ImmutableFailure implements Failure {
+public interface Failure {
 
     /**
-     * Code identifying the failure.
+     * Builds a failure with the received code.
+     *
+     * @param code
+     *            failure code
+     * @return failure with the code
      */
-    private final String code;
+    public static Failure of(final String code) {
+        return ImmutableFailure.builder()
+            .message(code)
+            .code(code)
+            .build();
+    }
 
     /**
-     * The failure message.
+     * Builds a failure with the received message and code.
+     *
+     * @param message
+     *            failure message
+     * @param code
+     *            failure code
+     * @return failure with the code
      */
-    private final String message;
+    public static Failure of(final String message, final String code) {
+        return ImmutableFailure.builder()
+            .message(message)
+            .code(code)
+            .build();
+    }
+
+    /**
+     * Returns a code identifying the failure.
+     *
+     * @return a code identifying the failure
+     */
+    public String getCode();
+
+    /**
+     * Returns the failure message.
+     *
+     * @return the failure message.
+     */
+    public String getMessage();
 
 }

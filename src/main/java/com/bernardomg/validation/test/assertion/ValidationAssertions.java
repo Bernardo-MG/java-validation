@@ -4,8 +4,8 @@ package com.bernardomg.validation.test.assertion;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 
-import com.bernardomg.validation.failure.FieldFailure;
-import com.bernardomg.validation.failure.exception.FieldFailureException;
+import com.bernardomg.validation.domain.exception.FieldFailureException;
+import com.bernardomg.validation.domain.model.FieldFailure;
 
 public final class ValidationAssertions {
 
@@ -35,7 +35,7 @@ public final class ValidationAssertions {
             .withFailMessage("Expected failure value '%s' but got '%s'", expected.getValue(), failure.getValue())
             .isEqualTo(expected.getValue());
     }
-    
+
     private ValidationAssertions() {
         super();
     }

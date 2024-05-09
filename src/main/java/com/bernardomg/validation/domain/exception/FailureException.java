@@ -22,58 +22,27 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.validation.failure;
+package com.bernardomg.validation.domain.exception;
 
 /**
- * Failure object. Containing a message to tell which error ocurred.
+ * Base exception for failure exceptions.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-public interface Failure {
+public abstract class FailureException extends RuntimeException {
 
     /**
-     * Builds a failure with the received code.
-     *
-     * @param code
-     *            failure code
-     * @return failure with the code
+     * Generated serial.
      */
-    public static Failure of(final String code) {
-        return ImmutableFailure.builder()
-            .message(code)
-            .code(code)
-            .build();
+    private static final long serialVersionUID = -3251278703501703696L;
+
+    protected FailureException() {
+        super();
     }
 
-    /**
-     * Builds a failure with the received message and code.
-     *
-     * @param message
-     *            failure message
-     * @param code
-     *            failure code
-     * @return failure with the code
-     */
-    public static Failure of(final String message, final String code) {
-        return ImmutableFailure.builder()
-            .message(message)
-            .code(code)
-            .build();
+    protected FailureException(final String message) {
+        super(message);
     }
-
-    /**
-     * Returns a code identifying the failure.
-     *
-     * @return a code identifying the failure
-     */
-    public String getCode();
-
-    /**
-     * Returns the failure message.
-     *
-     * @return the failure message.
-     */
-    public String getMessage();
 
 }

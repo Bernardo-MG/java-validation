@@ -27,8 +27,8 @@ package com.bernardomg.validation;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import com.bernardomg.validation.failure.FieldFailure;
-import com.bernardomg.validation.failure.exception.FieldFailureException;
+import com.bernardomg.validation.domain.exception.FieldFailureException;
+import com.bernardomg.validation.domain.model.FieldFailure;
 
 import lombok.extern.slf4j.Slf4j;
 

@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.validation.failure;
+package com.bernardomg.validation.domain.model;
 
 import java.io.Serializable;
 

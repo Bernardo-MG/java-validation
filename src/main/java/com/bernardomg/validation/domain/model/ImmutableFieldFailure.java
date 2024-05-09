@@ -22,27 +22,41 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.validation.failure.exception;
+package com.bernardomg.validation.domain.model;
+
+import lombok.Builder;
+import lombok.Value;
 
 /**
- * Base exception for failure exceptions.
+ * Immutable implementation of {@code FieldValidationError}.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-public abstract class FailureException extends RuntimeException {
+@Value
+@Builder
+public final class ImmutableFieldFailure implements FieldFailure {
+
+    private static final long serialVersionUID = 2019589536129094057L;
 
     /**
-     * Generated serial.
+     * Code identifying the failure.
      */
-    private static final long serialVersionUID = -3251278703501703696L;
+    private final String      code;
 
-    protected FailureException() {
-        super();
-    }
+    /**
+     * Name of the field which failed the validation.
+     */
+    private final String      field;
 
-    protected FailureException(final String message) {
-        super(message);
-    }
+    /**
+     * The failure message.
+     */
+    private final String      message;
+
+    /**
+     * The value which failed the validation.
+     */
+    private final Object      value;
 
 }

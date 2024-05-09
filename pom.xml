@@ -182,6 +182,7 @@
       <!-- ============================================== -->
       <!-- =========== DEPENDENCIES VERSIONS ============ -->
       <!-- ============================================== -->
+      <archunit.version>1.2.1</archunit.version>
       <assertj.version>3.24.2</assertj.version>
       <jakarta.validation.version>3.0.2</jakarta.validation.version>
       <junit.version>5.10.0</junit.version>
@@ -322,6 +323,13 @@
          <!-- Mockito JUnit Jupiter -->
          <groupId>org.mockito</groupId>
          <artifactId>mockito-junit-jupiter</artifactId>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <!-- ArchUnit -->
+         <groupId>com.tngtech.archunit</groupId>
+         <artifactId>archunit-junit5</artifactId>
+         <version>${archunit.version}</version>
          <scope>test</scope>
       </dependency>
    </dependencies>
