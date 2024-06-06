@@ -22,50 +22,25 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.validation;
-
-import java.util.ArrayList;
-import java.util.Collection;
-
-import com.bernardomg.validation.domain.exception.FieldFailureException;
-import com.bernardomg.validation.domain.model.FieldFailure;
-
-import lombok.extern.slf4j.Slf4j;
+package com.bernardomg.validation.validator;
 
 /**
- * Base implementation for validators which throws a {@link FieldFailureException}. All that it requires is implementing
- * the {@link #checkRules(Object, Collection) checkRules} method, which will populate a list with all the failures.
+ * Validator to ensure an object fulfills a set of rules. It is expected to throw a {@code FailureException} with all
+ * the failures.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  * @param <T>
  *            type being validated
  */
-@Slf4j
-public abstract class AbstractValidator<T> implements Validator<T> {
-
-    @Override
-    public final void validate(final T obj) {
-        final Collection<FieldFailure> failures;
-
-        failures = new ArrayList<>();
-
-        checkRules(obj, failures);
-
-        if (!failures.isEmpty()) {
-            log.debug("Got failures: {}", failures);
-            throw new FieldFailureException(failures);
-        }
-    }
+public interface Validator<T> {
 
     /**
-     * Populates the failures list with all the failed rules applied to the received object.
+     * Throws an {@code FailureException} if any error is found.
      *
      * @param obj
-     *            object to validate
-     * @param failures
-     *            failures list to populate
+     *            objec to validate
      */
-    protected abstract void checkRules(final T obj, final Collection<FieldFailure> failures);
+    public void validate(final T obj);
 
 }

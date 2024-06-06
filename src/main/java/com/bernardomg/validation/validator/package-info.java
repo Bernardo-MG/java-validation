@@ -23,7 +23,7 @@
  */
 
 /**
- * Validation components.
+ * Validator components.
  */
 
-package com.bernardomg.validation;
+package com.bernardomg.validation.validator;
