@@ -28,7 +28,7 @@ import lombok.Builder;
 import lombok.Value;
 
 /**
- * Immutable failure object.
+ * Failure object. Containing a message to tell which error ocurred.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *

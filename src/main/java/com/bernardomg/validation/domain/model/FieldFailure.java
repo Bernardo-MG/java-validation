@@ -28,7 +28,8 @@ import lombok.Builder;
 import lombok.Value;
 
 /**
- * Immutable implementation of {@code FieldValidationError}.
+ * Field error message. Usually represents an error when validation a single field from an object. The validation
+ * process may generate several of these.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
