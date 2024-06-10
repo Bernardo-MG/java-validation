@@ -24,16 +24,18 @@
 
 package com.bernardomg.validation.domain.model;
 
-import java.io.Serializable;
+import lombok.Builder;
+import lombok.Value;
 
 /**
- * Field error message. Usually represents an error when validation a single field from an object. The validation
- * process may generate several of these.
+ * Immutable implementation of {@code FieldValidationError}.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-public interface FieldFailure extends Failure, Serializable {
+@Value
+@Builder
+public final class FieldFailure {
 
     /**
      * Creates a {@code FieldFailure} for the received arguments. The message will be generated from the arguments.
@@ -51,7 +53,7 @@ public interface FieldFailure extends Failure, Serializable {
 
         message = String.format("%s.%s", field, code);
 
-        return ImmutableFieldFailure.builder()
+        return FieldFailure.builder()
             .message(message)
             .field(field)
             .code(code)
@@ -73,7 +75,7 @@ public interface FieldFailure extends Failure, Serializable {
      * @return {@code FieldValidationError} for the received arguments
      */
     public static FieldFailure of(final String message, final String field, final String code, final Object value) {
-        return ImmutableFieldFailure.builder()
+        return FieldFailure.builder()
             .message(message)
             .field(field)
             .code(code)
@@ -82,17 +84,23 @@ public interface FieldFailure extends Failure, Serializable {
     }
 
     /**
-     * Returns the name of the field which failed the validation.
-     *
-     * @return the name of the field which failed the validation
+     * Code identifying the failure.
      */
-    public String getField();
+    private final String code;
 
     /**
-     * Returns the value which failed the validation. This is stored in the field related to this failure.
-     *
-     * @return the value which failed the validation
+     * Name of the field which failed the validation.
      */
-    public Object getValue();
+    private final String field;
+
+    /**
+     * The failure message.
+     */
+    private final String message;
+
+    /**
+     * The value which failed the validation.
+     */
+    private final Object value;
 
 }

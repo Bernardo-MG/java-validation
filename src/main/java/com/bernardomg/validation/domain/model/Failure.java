@@ -24,13 +24,18 @@
 
 package com.bernardomg.validation.domain.model;
 
+import lombok.Builder;
+import lombok.Value;
+
 /**
- * Failure object. Containing a message to tell which error ocurred.
+ * Immutable failure object.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-public interface Failure {
+@Value
+@Builder
+public final class Failure {
 
     /**
      * Builds a failure with the received code.
@@ -40,7 +45,7 @@ public interface Failure {
      * @return failure with the code
      */
     public static Failure of(final String code) {
-        return ImmutableFailure.builder()
+        return Failure.builder()
             .message(code)
             .code(code)
             .build();
@@ -56,24 +61,20 @@ public interface Failure {
      * @return failure with the code
      */
     public static Failure of(final String message, final String code) {
-        return ImmutableFailure.builder()
+        return Failure.builder()
             .message(message)
             .code(code)
             .build();
     }
 
     /**
-     * Returns a code identifying the failure.
-     *
-     * @return a code identifying the failure
+     * Code identifying the failure.
      */
-    public String getCode();
+    private final String code;
 
     /**
-     * Returns the failure message.
-     *
-     * @return the failure message.
+     * The failure message.
      */
-    public String getMessage();
+    private final String message;
 
 }
