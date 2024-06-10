@@ -25,6 +25,7 @@
 package com.bernardomg.validation.test.assertion;
 
 import org.assertj.core.api.Assertions;
+import org.assertj.core.api.SoftAssertions;
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 
 import com.bernardomg.validation.domain.exception.FieldFailureException;
@@ -37,36 +38,47 @@ public final class ValidationAssertions {
 
     /**
      * Asserts that the callable throws the received exception.
-     * @param callable callable which throws the exception
-     * @param expected expected exception
+     *
+     * @param callable
+     *            callable which throws the exception
+     * @param expected
+     *            expected exception
      */
     public static final void assertThatFieldFails(final ThrowingCallable callable, final FieldFailure expected) {
         final FieldFailureException exception;
-        final FieldFailure          failure;
 
         // Catch exception
         exception = Assertions.catchThrowableOfType(callable, FieldFailureException.class);
 
-        // There is a single failure
-        Assertions.assertThat(exception.getFailures())
-            .hasSize(1);
+        SoftAssertions.assertSoftly(softly -> {
+            final FieldFailure failure;
 
-        failure = exception.getFailures()
-            .iterator()
-            .next();
+            // There is a single failure
+            softly.assertThat(exception.getFailures())
+                .hasSize(1);
 
-        Assertions.assertThat(failure.getField())
-            .withFailMessage("Expected failure field '%s' but got '%s'", expected.getField(), failure.getField())
-            .isEqualTo(expected.getField());
-        Assertions.assertThat(failure.getCode())
-            .withFailMessage("Expected failure code '%s' but got '%s'", expected.getCode(), failure.getCode())
-            .isEqualTo(expected.getCode());
-        Assertions.assertThat(failure.getMessage())
-            .withFailMessage("Expected failure message '%s' but got '%s'", expected.getMessage(), failure.getMessage())
-            .isEqualTo(expected.getMessage());
-        Assertions.assertThat(failure.getValue())
-            .withFailMessage("Expected failure value '%s' but got '%s'", expected.getValue(), failure.getValue())
-            .isEqualTo(expected.getValue());
+            failure = exception.getFailures()
+                .iterator()
+                .next();
+
+            // Field
+            softly.assertThat(failure.getField())
+                .withFailMessage("Expected failure field '%s' but got '%s'", expected.getField(), failure.getField())
+                .isEqualTo(expected.getField());
+            // Code
+            softly.assertThat(failure.getCode())
+                .withFailMessage("Expected failure code '%s' but got '%s'", expected.getCode(), failure.getCode())
+                .isEqualTo(expected.getCode());
+            // Message
+            softly.assertThat(failure.getMessage())
+                .withFailMessage("Expected failure message '%s' but got '%s'", expected.getMessage(),
+                    failure.getMessage())
+                .isEqualTo(expected.getMessage());
+            // Value
+            softly.assertThat(failure.getValue())
+                .withFailMessage("Expected failure value '%s' but got '%s'", expected.getValue(), failure.getValue())
+                .isEqualTo(expected.getValue());
+        });
     }
 
     private ValidationAssertions() {
