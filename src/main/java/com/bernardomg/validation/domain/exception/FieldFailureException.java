@@ -24,8 +24,10 @@
 
 package com.bernardomg.validation.domain.exception;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Objects;
 
 import com.bernardomg.validation.domain.model.FieldFailure;
 
@@ -38,7 +40,7 @@ import lombok.Getter;
  *
  */
 @Getter
-public class FieldFailureException extends FailureException {
+public class FieldFailureException extends RuntimeException {
 
     /**
      * Generated serial.
@@ -50,15 +52,22 @@ public class FieldFailureException extends FailureException {
      */
     private final Collection<FieldFailure> failures;
 
-    public FieldFailureException(final Collection<FieldFailure> fails) {
+    /**
+     * The object which caused the field filure.
+     */
+    private final Serializable             source;
+
+    public FieldFailureException(final Serializable src, final Collection<FieldFailure> fails) {
         super();
 
-        failures = fails;
+        source = src;
+        failures = Objects.requireNonNull(fails);
     }
 
-    public FieldFailureException(final FieldFailure fail) {
+    public FieldFailureException(final Serializable src, final FieldFailure fail) {
         super(fail.getMessage());
 
+        source = src;
         failures = Arrays.asList(fail);
     }
 

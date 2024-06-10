@@ -24,6 +24,7 @@
 
 package com.bernardomg.validation.validator;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -54,7 +55,10 @@ public abstract class AbstractValidator<T> implements Validator<T> {
 
         if (!failures.isEmpty()) {
             log.debug("Got failures: {}", failures);
-            throw new FieldFailureException(failures);
+            if (obj instanceof final Serializable serializable) {
+                throw new FieldFailureException(serializable, failures);
+            }
+            throw new FieldFailureException(null, failures);
         }
     }
 
