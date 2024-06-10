@@ -22,27 +22,8 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.validation.domain.exception;
-
 /**
- * Base abstract exception for failure exceptions.
- *
- * @author Bernardo Mart&iacute;nez Garrido
- *
+ * Assertions for testing.
  */
-public abstract class FailureException extends RuntimeException {
 
-    /**
-     * Generated serial.
-     */
-    private static final long serialVersionUID = -3251278703501703696L;
-
-    protected FailureException() {
-        super();
-    }
-
-    protected FailureException(final String message) {
-        super(message);
-    }
-
-}
+package com.bernardomg.validation.test.assertion;

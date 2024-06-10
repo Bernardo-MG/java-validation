@@ -39,8 +39,14 @@ import org.passay.WhitespaceRule;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
+/**
+ * Validator for the {@link StrongPassword} annotation. Makes use of the Passay library to validate the password.
+ */
 public final class PasswordConstraintValidator implements ConstraintValidator<StrongPassword, String> {
 
+    /**
+     * Password validator to be used.
+     */
     private final PasswordValidator validator;
 
     public PasswordConstraintValidator() {

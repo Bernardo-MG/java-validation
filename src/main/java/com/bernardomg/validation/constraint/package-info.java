@@ -23,7 +23,7 @@
  */
 
 /**
- * Validation constraints.
+ * Validation constraints. These are extensions to the Java validation API.
  */
 
 package com.bernardomg.validation.constraint;
