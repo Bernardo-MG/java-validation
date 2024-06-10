@@ -6,7 +6,7 @@ import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import com.bernardomg.validation.failure.exception.FieldFailureException;
+import com.bernardomg.validation.domain.exception.FieldFailureException;
 import com.bernardomg.validation.test.util.EmptyTestValidator;
 import com.bernardomg.validation.test.util.TestValidator;
 

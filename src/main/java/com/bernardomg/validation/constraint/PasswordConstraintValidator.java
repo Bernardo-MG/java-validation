@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2023 the original author or authors.
+ * Copyright (c) 2023-2024-2024 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,8 +39,14 @@ import org.passay.WhitespaceRule;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
+/**
+ * Validator for the {@link StrongPassword} annotation. Makes use of the Passay library to validate the password.
+ */
 public final class PasswordConstraintValidator implements ConstraintValidator<StrongPassword, String> {
 
+    /**
+     * Password validator to be used.
+     */
     private final PasswordValidator validator;
 
     public PasswordConstraintValidator() {

@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2023 the original author or authors.
+ * Copyright (c) 2023-2024 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,13 +22,14 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.validation;
+package com.bernardomg.validation.validator;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import com.bernardomg.validation.failure.FieldFailure;
-import com.bernardomg.validation.failure.exception.FieldFailureException;
+import com.bernardomg.validation.domain.exception.FieldFailureException;
+import com.bernardomg.validation.domain.model.FieldFailure;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -54,7 +55,10 @@ public abstract class AbstractValidator<T> implements Validator<T> {
 
         if (!failures.isEmpty()) {
             log.debug("Got failures: {}", failures);
-            throw new FieldFailureException(failures);
+            if (obj instanceof final Serializable serializable) {
+                throw new FieldFailureException(serializable, failures);
+            }
+            throw new FieldFailureException(null, failures);
         }
     }
 

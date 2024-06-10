@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2023 the original author or authors.
+ * Copyright (c) 2023-2024 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,27 +22,59 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.validation.failure.exception;
+package com.bernardomg.validation.domain.model;
+
+import lombok.Builder;
+import lombok.Value;
 
 /**
- * Base exception for failure exceptions.
+ * Failure object. Containing a message to tell which error ocurred.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-public abstract class FailureException extends RuntimeException {
+@Value
+@Builder
+public final class Failure {
 
     /**
-     * Generated serial.
+     * Builds a failure with the received code.
+     *
+     * @param code
+     *            failure code
+     * @return failure with the code
      */
-    private static final long serialVersionUID = -3251278703501703696L;
-
-    protected FailureException() {
-        super();
+    public static Failure of(final String code) {
+        return Failure.builder()
+            .message(code)
+            .code(code)
+            .build();
     }
 
-    protected FailureException(final String message) {
-        super(message);
+    /**
+     * Builds a failure with the received message and code.
+     *
+     * @param message
+     *            failure message
+     * @param code
+     *            failure code
+     * @return failure with the code
+     */
+    public static Failure of(final String message, final String code) {
+        return Failure.builder()
+            .message(message)
+            .code(code)
+            .build();
     }
+
+    /**
+     * Code identifying the failure.
+     */
+    private final String code;
+
+    /**
+     * The failure message.
+     */
+    private final String message;
 
 }

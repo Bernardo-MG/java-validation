@@ -3,8 +3,8 @@ package com.bernardomg.validation.test.util;
 
 import java.util.Collection;
 
-import com.bernardomg.validation.AbstractValidator;
-import com.bernardomg.validation.failure.FieldFailure;
+import com.bernardomg.validation.domain.model.FieldFailure;
+import com.bernardomg.validation.validator.AbstractValidator;
 
 public final class TestValidator extends AbstractValidator<String> {
 

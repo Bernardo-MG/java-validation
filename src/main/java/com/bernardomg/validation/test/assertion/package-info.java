@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2023 the original author or authors.
+ * Copyright (c) 2023-2024 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,41 +22,8 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.validation.failure;
-
-import lombok.Builder;
-import lombok.Value;
-
 /**
- * Immutable implementation of {@code FieldValidationError}.
- *
- * @author Bernardo Mart&iacute;nez Garrido
- *
+ * Assertions for testing.
  */
-@Value
-@Builder
-public final class ImmutableFieldFailure implements FieldFailure {
 
-    private static final long serialVersionUID = 2019589536129094057L;
-
-    /**
-     * Code identifying the failure.
-     */
-    private final String      code;
-
-    /**
-     * Name of the field which failed the validation.
-     */
-    private final String      field;
-
-    /**
-     * The failure message.
-     */
-    private final String      message;
-
-    /**
-     * The value which failed the validation.
-     */
-    private final Object      value;
-
-}
+package com.bernardomg.validation.test.assertion;

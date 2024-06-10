@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2023 the original author or authors.
+ * Copyright (c) 2023-2024 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,8 +22,25 @@
  * SOFTWARE.
  */
 
-/**
- * Validation failure exceptions.
- */
+package com.bernardomg.validation.validator;
 
-package com.bernardomg.validation.failure.exception;
+/**
+ * Validator to ensure an object fulfills a set of rules. It is expected to throw a {@code FailureException} with all
+ * the failures.
+ *
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ * @param <T>
+ *            type being validated
+ */
+public interface Validator<T> {
+
+    /**
+     * Throws an {@code FailureException} if any error is found.
+     *
+     * @param obj
+     *            objec to validate
+     */
+    public void validate(final T obj);
+
+}

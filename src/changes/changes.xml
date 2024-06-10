@@ -6,9 +6,17 @@
       <author email="programming@bernardomg.com">Bernardo Martínez Garrido</author>
    </properties>
    <body>
-      <release version="0.1.0" date="2023-11-2" description="First version">
+      <release version="0.1.0" date="2023-11-02" description="First version">
          <action dev="bmg" type="add">
             First version.
+         </action>
+      </release>
+      <release version="0.1.1" date="2024-06-10" description="Code corrections">
+         <action dev="bmg" type="update">
+            Code corrections.
+         </action>
+         <action dev="bmg" type="remove">
+            Dropped JDK 11 support.
          </action>
       </release>
    </body>

@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2023 the original author or authors.
+ * Copyright (c) 2023-2024-2024 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -47,7 +47,7 @@ public @interface StrongPassword {
 
     Class<?>[] groups() default {};
 
-    String message() default "Invalid Password";
+    String message() default "Weak password";
 
     Class<? extends Payload>[] payload() default {};
 

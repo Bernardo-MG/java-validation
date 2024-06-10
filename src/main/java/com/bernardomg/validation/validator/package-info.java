@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2023 the original author or authors.
+ * Copyright (c) 2023-2024 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,29 +22,8 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.validation.failure;
-
-import lombok.Builder;
-import lombok.Value;
-
 /**
- * Immutable failure object.
- *
- * @author Bernardo Mart&iacute;nez Garrido
- *
+ * Validator components.
  */
-@Value
-@Builder
-public final class ImmutableFailure implements Failure {
 
-    /**
-     * Code identifying the failure.
-     */
-    private final String code;
-
-    /**
-     * The failure message.
-     */
-    private final String message;
-
-}
+package com.bernardomg.validation.validator;

@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2023 the original author or authors.
+ * Copyright (c) 2023-2024 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,44 +22,8 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.validation.failure.exception;
-
-import java.util.Arrays;
-import java.util.Collection;
-
-import com.bernardomg.validation.failure.FieldFailure;
-
-import lombok.Getter;
-
 /**
- * Exception for field failures. Contains multiple field failures, all for the same object.
- *
- * @author Bernardo Mart&iacute;nez Garrido
- *
+ * Validation model.
  */
-@Getter
-public class FieldFailureException extends FailureException {
 
-    /**
-     * Generated serial.
-     */
-    private static final long              serialVersionUID = -2003757248463512577L;
-
-    /**
-     * All the failures for the validated object.
-     */
-    private final Collection<FieldFailure> failures;
-
-    public FieldFailureException(final Collection<FieldFailure> fails) {
-        super();
-
-        failures = fails;
-    }
-
-    public FieldFailureException(final FieldFailure fail) {
-        super(fail.getMessage());
-
-        failures = Arrays.asList(fail);
-    }
-
-}
+package com.bernardomg.validation.domain.model;
