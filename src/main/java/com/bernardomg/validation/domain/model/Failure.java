@@ -34,7 +34,7 @@ import lombok.Value;
  *
  */
 @Value
-@Builder
+@Builder(setterPrefix = "with")
 public final class Failure {
 
     /**
@@ -46,8 +46,8 @@ public final class Failure {
      */
     public static Failure of(final String code) {
         return Failure.builder()
-            .message(code)
-            .code(code)
+            .withMessage(code)
+            .withCode(code)
             .build();
     }
 
@@ -62,8 +62,8 @@ public final class Failure {
      */
     public static Failure of(final String message, final String code) {
         return Failure.builder()
-            .message(message)
-            .code(code)
+            .withMessage(message)
+            .withCode(code)
             .build();
     }
 

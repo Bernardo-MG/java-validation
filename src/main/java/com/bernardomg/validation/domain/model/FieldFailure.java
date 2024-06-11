@@ -35,7 +35,7 @@ import lombok.Value;
  *
  */
 @Value
-@Builder
+@Builder(setterPrefix = "with")
 public final class FieldFailure {
 
     /**
@@ -55,10 +55,10 @@ public final class FieldFailure {
         message = String.format("%s.%s", field, code);
 
         return FieldFailure.builder()
-            .message(message)
-            .field(field)
-            .code(code)
-            .value(value)
+            .withMessage(message)
+            .withField(field)
+            .withCode(code)
+            .withValue(value)
             .build();
     }
 
@@ -77,10 +77,10 @@ public final class FieldFailure {
      */
     public static FieldFailure of(final String message, final String field, final String code, final Object value) {
         return FieldFailure.builder()
-            .message(message)
-            .field(field)
-            .code(code)
-            .value(value)
+            .withMessage(message)
+            .withField(field)
+            .withCode(code)
+            .withValue(value)
             .build();
     }
 
