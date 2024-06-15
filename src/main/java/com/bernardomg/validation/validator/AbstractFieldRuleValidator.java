@@ -37,6 +37,8 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * Validator which checks the fields of the received object. It will apply a collection of rules, throwing a
  * {@link FieldFailureException} if any {@link FieldFailure} is generated.
+ * <p>
+ * TODO: make this class final and not abstract
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
@@ -60,15 +62,25 @@ public abstract class AbstractFieldRuleValidator<T> implements Validator<T> {
     @Override
     public final void validate(final T obj) {
         final Collection<FieldFailure> failures;
+        
+        log.debug("Validating {} with rules {}", obj, rules);
 
         failures = rules.stream()
-            .map(r -> r.check(obj))
+            .map(r -> {
+                final Optional<FieldFailure> failure;
+                
+                log.debug("Applying rule {}", r);
+                failure =  r.check(obj);
+                log.debug("Applied rule {}, which returned failure {}", r,failure);
+                
+                return failure;
+            })
             .filter(Optional::isPresent)
             .map(Optional::get)
             .toList();
 
         if (!failures.isEmpty()) {
-            log.debug("Got failures: {}", failures);
+            log.debug("Validated {} and generated failures: {}", obj, failures);
             if (obj instanceof final Serializable serializable) {
                 throw new FieldFailureException(serializable, failures);
             }
