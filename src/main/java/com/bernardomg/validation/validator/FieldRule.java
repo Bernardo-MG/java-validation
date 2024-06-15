@@ -24,23 +24,28 @@
 
 package com.bernardomg.validation.validator;
 
+import java.util.Optional;
+
+import com.bernardomg.validation.domain.model.FieldFailure;
+
 /**
- * Validator to ensure an object fulfills a set of rules. It is expected to throw a {@code FailureException} with all
- * the failures.
+ * Single validation rule to apply when validating an object. It is meant to be used in a
+ * {@link com.bernardomg.validation.validator.Validator Validator}, to build the failures list.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  * @param <T>
  *            type being validated
  */
-public interface Validator<T> {
+@FunctionalInterface
+public interface FieldRule<T> {
 
     /**
      * Throws an {@code FailureException} if any error is found.
      *
      * @param obj
-     *            object to validate
+     *            objec to validate
      */
-    public void validate(final T obj);
+    public Optional<FieldFailure> check(final T obj);
 
 }
