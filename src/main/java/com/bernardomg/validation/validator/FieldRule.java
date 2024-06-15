@@ -22,59 +22,30 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.validation.domain.model;
+package com.bernardomg.validation.validator;
 
-import lombok.Builder;
-import lombok.Value;
+import java.util.Optional;
+
+import com.bernardomg.validation.domain.model.FieldFailure;
 
 /**
- * Failure object. Containing a message to tell which error ocurred.
+ * Single validation rule to apply when validating an object. It is meant to be used in a
+ * {@link com.bernardomg.validation.validator.Validator Validator}, to build the failures list.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
+ * @param <T>
+ *            type being validated
  */
-@Value
-@Builder(setterPrefix = "with")
-public final class Failure {
+@FunctionalInterface
+public interface FieldRule<T> {
 
     /**
-     * Builds a failure with the received code.
+     * Throws an {@code FailureException} if any error is found.
      *
-     * @param code
-     *            failure code
-     * @return failure with the code
+     * @param obj
+     *            objec to validate
      */
-    public static Failure of(final String code) {
-        return Failure.builder()
-            .withMessage(code)
-            .withCode(code)
-            .build();
-    }
-
-    /**
-     * Builds a failure with the received message and code.
-     *
-     * @param message
-     *            failure message
-     * @param code
-     *            failure code
-     * @return failure with the code
-     */
-    public static Failure of(final String message, final String code) {
-        return Failure.builder()
-            .withMessage(message)
-            .withCode(code)
-            .build();
-    }
-
-    /**
-     * Code identifying the failure.
-     */
-    private final String code;
-
-    /**
-     * The failure message.
-     */
-    private final String message;
+    public Optional<FieldFailure> check(final T obj);
 
 }

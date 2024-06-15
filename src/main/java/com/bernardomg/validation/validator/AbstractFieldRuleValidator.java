@@ -25,8 +25,9 @@
 package com.bernardomg.validation.validator;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Objects;
+import java.util.Optional;
 
 import com.bernardomg.validation.domain.exception.FieldFailureException;
 import com.bernardomg.validation.domain.model.FieldFailure;
@@ -34,8 +35,8 @@ import com.bernardomg.validation.domain.model.FieldFailure;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Validator which checks the fields of the received object. It works with {@link FieldFailure}, throwing a
- * {@link FieldFailureException} if any is generated.
+ * Validator which checks the fields of the received object. It will apply a collection of rules, throwing a
+ * {@link FieldFailureException} if any {@link FieldFailure} is generated.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
@@ -43,16 +44,28 @@ import lombok.extern.slf4j.Slf4j;
  *            type being validated
  */
 @Slf4j
-@Deprecated
-public abstract class AbstractValidator<T> implements Validator<T> {
+public abstract class AbstractFieldRuleValidator<T> implements Validator<T> {
+
+    /**
+     * The set of rules to apply.
+     */
+    private final Collection<FieldRule<T>> rules;
+
+    protected AbstractFieldRuleValidator(final Collection<FieldRule<T>> rules) {
+        super();
+
+        this.rules = Objects.requireNonNull(rules);
+    }
 
     @Override
     public final void validate(final T obj) {
         final Collection<FieldFailure> failures;
 
-        failures = new ArrayList<>();
-
-        checkRules(obj, failures);
+        failures = rules.stream()
+            .map(r -> r.check(obj))
+            .filter(Optional::isPresent)
+            .map(Optional::get)
+            .toList();
 
         if (!failures.isEmpty()) {
             log.debug("Got failures: {}", failures);
@@ -62,15 +75,5 @@ public abstract class AbstractValidator<T> implements Validator<T> {
             throw new FieldFailureException(null, failures);
         }
     }
-
-    /**
-     * Populates the failures list with all the failed rules applied to the received object.
-     *
-     * @param obj
-     *            object to validate
-     * @param failures
-     *            failures list to populate
-     */
-    protected abstract void checkRules(final T obj, final Collection<FieldFailure> failures);
 
 }

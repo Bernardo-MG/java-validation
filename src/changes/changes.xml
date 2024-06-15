@@ -19,5 +19,10 @@
             Dropped JDK 11 support.
          </action>
       </release>
+      <release version="0.1.2" date="2024-06-15" description="New validator">
+         <action dev="bmg" type="add">
+            Prepared new validator based on rules.
+         </action>
+      </release>
    </body>
 </document>
