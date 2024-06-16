@@ -1,6 +1,9 @@
 
 package com.bernardomg.validation.test.unit;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.assertj.core.api.Assertions;
 import org.assertj.core.api.InstanceOfAssertFactories;
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
@@ -8,11 +11,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.bernardomg.validation.domain.exception.FieldFailureException;
-import com.bernardomg.validation.test.config.validator.EmptyFieldRuleValidator;
-import com.bernardomg.validation.test.config.validator.TestFieldRuleValidator;
+import com.bernardomg.validation.domain.model.FieldFailure;
+import com.bernardomg.validation.validator.FieldRuleValidator;
 
-@DisplayName("AbstractFieldRuleValidator")
-public class AbstractFieldRuleValidatorTest {
+@DisplayName("FieldRuleValidator")
+public class FieldRuleValidatorTest {
 
     @Test
     @DisplayName("When there are validation failures it throws the expected exception")
@@ -20,7 +23,8 @@ public class AbstractFieldRuleValidatorTest {
         final ThrowingCallable execution;
 
         // WHEN
-        execution = () -> new TestFieldRuleValidator().validate("abc");
+        execution = () -> new FieldRuleValidator<>(List.of((obj -> Optional.of(FieldFailure.of("field", "code", obj)))))
+            .validate("abc");
 
         // THEN
         Assertions.assertThatThrownBy(execution)
@@ -39,7 +43,7 @@ public class AbstractFieldRuleValidatorTest {
         final ThrowingCallable execution;
 
         // WHEN
-        execution = () -> new EmptyFieldRuleValidator().validate("abc");
+        execution = () -> new FieldRuleValidator<>(List.of()).validate("abc");
 
         // THEN
         Assertions.assertThatCode(execution)

@@ -37,8 +37,6 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * Validator which checks the fields of the received object. It will apply a collection of rules, throwing a
  * {@link FieldFailureException} if any {@link FieldFailure} is generated.
- * <p>
- * TODO: make this class final and not abstract
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
@@ -46,14 +44,14 @@ import lombok.extern.slf4j.Slf4j;
  *            type being validated
  */
 @Slf4j
-public abstract class AbstractFieldRuleValidator<T> implements Validator<T> {
+public final class FieldRuleValidator<T> implements Validator<T> {
 
     /**
      * The set of rules to apply.
      */
     private final Collection<FieldRule<T>> rules;
 
-    protected AbstractFieldRuleValidator(final Collection<FieldRule<T>> rules) {
+    public FieldRuleValidator(final Collection<FieldRule<T>> rules) {
         super();
 
         this.rules = Objects.requireNonNull(rules);
