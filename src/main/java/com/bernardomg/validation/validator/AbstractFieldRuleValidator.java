@@ -62,17 +62,17 @@ public abstract class AbstractFieldRuleValidator<T> implements Validator<T> {
     @Override
     public final void validate(final T obj) {
         final Collection<FieldFailure> failures;
-        
+
         log.debug("Validating {} with rules {}", obj, rules);
 
         failures = rules.stream()
             .map(r -> {
                 final Optional<FieldFailure> failure;
-                
+
                 log.debug("Applying rule {}", r);
-                failure =  r.check(obj);
-                log.debug("Applied rule {}, which returned failure {}", r,failure);
-                
+                failure = r.check(obj);
+                log.debug("Applied rule {}, which returned failure {}", r, failure);
+
                 return failure;
             })
             .filter(Optional::isPresent)

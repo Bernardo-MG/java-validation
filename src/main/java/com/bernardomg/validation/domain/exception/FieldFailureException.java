@@ -53,7 +53,7 @@ public class FieldFailureException extends RuntimeException {
     private final Collection<FieldFailure> failures;
 
     /**
-     * The object which caused the field filure.
+     * The object which caused the field failure.
      */
     private final Serializable             source;
 
