@@ -84,7 +84,7 @@ public abstract class AbstractFieldRuleValidator<T> implements Validator<T> {
             if (obj instanceof final Serializable serializable) {
                 throw new FieldFailureException(serializable, failures);
             }
-            throw new FieldFailureException(null, failures);
+            throw new FieldFailureException(failures);
         }
     }
 

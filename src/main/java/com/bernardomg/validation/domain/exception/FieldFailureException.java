@@ -57,18 +57,32 @@ public class FieldFailureException extends RuntimeException {
      */
     private final Serializable             source;
 
-    public FieldFailureException(final Serializable src, final Collection<FieldFailure> fails) {
+    public FieldFailureException(final Collection<FieldFailure> fails) {
         super();
 
-        source = src;
+        source = null;
         failures = Objects.requireNonNull(fails);
     }
 
-    public FieldFailureException(final Serializable src, final FieldFailure fail) {
-        super(fail.getMessage());
+    public FieldFailureException(final FieldFailure failure) {
+        super(failure.getMessage());
 
-        source = src;
-        failures = Arrays.asList(fail);
+        source = null;
+        failures = Arrays.asList(failure);
+    }
+
+    public FieldFailureException(final Serializable src, final Collection<FieldFailure> fails) {
+        super();
+
+        source = Objects.requireNonNull(src);
+        failures = Objects.requireNonNull(fails);
+    }
+
+    public FieldFailureException(final Serializable src, final FieldFailure failure) {
+        super(failure.getMessage());
+
+        source = Objects.requireNonNull(src);
+        failures = Arrays.asList(failure);
     }
 
 }
