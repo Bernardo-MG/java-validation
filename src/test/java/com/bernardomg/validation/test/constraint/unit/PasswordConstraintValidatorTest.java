@@ -34,10 +34,13 @@ public class PasswordConstraintValidatorTest {
     void testIsValid_AllLowerCase() {
         final boolean valid;
 
+        // GIVEN
         initializeErrorResponse();
 
+        // WHEN
         valid = validator.isValid("abcdefgh", context);
 
+        // THEN
         Assertions.assertThat(valid)
             .isFalse();
     }
@@ -47,8 +50,10 @@ public class PasswordConstraintValidatorTest {
     void testIsValid_Complex() {
         final boolean valid;
 
+        // WHEN
         valid = validator.isValid("Abcdef1!", context);
 
+        // THEN
         Assertions.assertThat(valid)
             .isTrue();
     }
@@ -58,10 +63,13 @@ public class PasswordConstraintValidatorTest {
     void testIsValid_Empty() {
         final boolean valid;
 
+        // GIVEN
         initializeErrorResponse();
 
+        // WHEN
         valid = validator.isValid("", context);
 
+        // THEN
         Assertions.assertThat(valid)
             .isFalse();
     }
@@ -71,10 +79,13 @@ public class PasswordConstraintValidatorTest {
     void testIsValid_EmptySpace() {
         final boolean valid;
 
+        // GIVEN
         initializeErrorResponse();
 
+        // WHEN
         valid = validator.isValid("Abcde f1!", context);
 
+        // THEN
         Assertions.assertThat(valid)
             .isFalse();
     }

@@ -24,6 +24,8 @@
 
 package com.bernardomg.validation.domain.model;
 
+import java.io.Serializable;
+
 import lombok.Builder;
 import lombok.Value;
 
@@ -36,7 +38,12 @@ import lombok.Value;
  */
 @Value
 @Builder(setterPrefix = "with")
-public final class FieldFailure {
+public final class FieldFailure implements Serializable {
+
+    /**
+     * Serialisation id.
+     */
+    private static final long serialVersionUID = 8492078591901480534L;
 
     /**
      * Creates a {@code FieldFailure} for the received arguments. The message will be generated from the arguments.
