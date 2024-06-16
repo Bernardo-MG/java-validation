@@ -24,7 +24,13 @@
             Prepared new validator based on rules.
          </action>
       </release>
-      <release version="1.0.0" date="2024-06-15" description="">
+      <release version="0.1.2" date="2024-06-15" description="New validator">
+         <action dev="bmg" type="update">
+            Using new validator.
+         </action>
+         <action dev="bmg" type="remove">
+            Deleted old validator.
+         </action>
       </release>
    </body>
 </document>
