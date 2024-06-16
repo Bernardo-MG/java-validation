@@ -2,6 +2,7 @@
 package com.bernardomg.validation.test.unit;
 
 import org.assertj.core.api.Assertions;
+import org.assertj.core.api.InstanceOfAssertFactories;
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,17 +17,19 @@ public class AbstractFieldRuleValidatorTest {
     @Test
     @DisplayName("When there are validation failures it throws the expected exception")
     void testValidate_failures() {
-        final ThrowingCallable      execution;
-        final FieldFailureException exception;
+        final ThrowingCallable execution;
 
+        // WHEN
         execution = () -> new TestFieldRuleValidator().validate("abc");
 
+        // THEN
         Assertions.assertThatThrownBy(execution)
-            .isInstanceOf(FieldFailureException.class);
-
-        exception = Assertions.catchThrowableOfType(execution, FieldFailureException.class);
-
-        Assertions.assertThat(exception.getFailures())
+            .as("validation exception")
+            .isInstanceOf(FieldFailureException.class)
+            .asInstanceOf(InstanceOfAssertFactories.type(FieldFailureException.class))
+            .extracting(FieldFailureException::getFailures)
+            .as("failures")
+            .asInstanceOf(InstanceOfAssertFactories.LIST)
             .hasSize(1);
     }
 
@@ -35,9 +38,12 @@ public class AbstractFieldRuleValidatorTest {
     void testValidate_noFailures() {
         final ThrowingCallable execution;
 
+        // WHEN
         execution = () -> new EmptyFieldRuleValidator().validate("abc");
 
+        // THEN
         Assertions.assertThatCode(execution)
+            .as("validation execution")
             .doesNotThrowAnyException();
     }
 
