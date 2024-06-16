@@ -26,7 +26,7 @@ package com.bernardomg.validation.validator;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Objects;
+import java.util.List;
 import java.util.Optional;
 
 import com.bernardomg.validation.domain.exception.FieldFailureException;
@@ -51,10 +51,11 @@ public final class FieldRuleValidator<T> implements Validator<T> {
      */
     private final Collection<FieldRule<T>> rules;
 
-    public FieldRuleValidator(final Collection<FieldRule<T>> rules) {
+    @SafeVarargs
+    public FieldRuleValidator(final FieldRule<T>... rules) {
         super();
 
-        this.rules = Objects.requireNonNull(rules);
+        this.rules = List.of(rules);
     }
 
     @Override

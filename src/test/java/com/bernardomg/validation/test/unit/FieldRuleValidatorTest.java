@@ -1,7 +1,6 @@
 
 package com.bernardomg.validation.test.unit;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.assertj.core.api.Assertions;
@@ -23,7 +22,7 @@ public class FieldRuleValidatorTest {
         final ThrowingCallable execution;
 
         // WHEN
-        execution = () -> new FieldRuleValidator<>(List.of((obj -> Optional.of(FieldFailure.of("field", "code", obj)))))
+        execution = () -> new FieldRuleValidator<>((obj -> Optional.of(FieldFailure.of("field", "code", obj))))
             .validate("abc");
 
         // THEN
@@ -43,7 +42,7 @@ public class FieldRuleValidatorTest {
         final ThrowingCallable execution;
 
         // WHEN
-        execution = () -> new FieldRuleValidator<>(List.of()).validate("abc");
+        execution = () -> new FieldRuleValidator<>().validate("abc");
 
         // THEN
         Assertions.assertThatCode(execution)
