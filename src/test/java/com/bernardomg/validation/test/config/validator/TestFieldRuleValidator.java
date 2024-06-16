@@ -1,5 +1,5 @@
 
-package com.bernardomg.validation.test.util;
+package com.bernardomg.validation.test.config.validator;
 
 import java.util.List;
 import java.util.Optional;

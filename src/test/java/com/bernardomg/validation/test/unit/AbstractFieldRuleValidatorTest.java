@@ -7,8 +7,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.bernardomg.validation.domain.exception.FieldFailureException;
-import com.bernardomg.validation.test.util.EmptyFieldRuleValidator;
-import com.bernardomg.validation.test.util.TestFieldRuleValidator;
+import com.bernardomg.validation.test.config.validator.EmptyFieldRuleValidator;
+import com.bernardomg.validation.test.config.validator.TestFieldRuleValidator;
 
 @DisplayName("AbstractFieldRuleValidator")
 public class AbstractFieldRuleValidatorTest {
