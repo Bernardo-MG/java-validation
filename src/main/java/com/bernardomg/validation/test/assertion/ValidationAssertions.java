@@ -25,6 +25,7 @@
 package com.bernardomg.validation.test.assertion;
 
 import org.assertj.core.api.Assertions;
+import org.assertj.core.api.InstanceOfAssertFactories;
 import org.assertj.core.api.SoftAssertions;
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 
@@ -54,7 +55,11 @@ public final class ValidationAssertions {
             final FieldFailure failure;
 
             // There is a single failure
-            softly.assertThat(exception.getFailures())
+            softly.assertThat(exception)
+                .as("failures")
+                .isNotNull()
+                .extracting(FieldFailureException::getFailures)
+                .asInstanceOf(InstanceOfAssertFactories.LIST)
                 .hasSize(1);
 
             failure = exception.getFailures()
