@@ -39,28 +39,4 @@ public record Failure(String code, String message) {
         Objects.requireNonNull(message, "Received null message");
     }
 
-    /**
-     * Builds a failure with the received code.
-     *
-     * @param code
-     *            failure code
-     * @return failure with the code
-     */
-    public static Failure of(final String code) {
-        return new Failure(code, code);
-    }
-
-    /**
-     * Builds a failure with the received message and code.
-     *
-     * @param message
-     *            failure message
-     * @param code
-     *            failure code
-     * @return failure with the code
-     */
-    public static Failure of(final String message, final String code) {
-        return new Failure(code, message);
-    }
-
 }

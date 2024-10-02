@@ -67,21 +67,4 @@ public record FieldFailure(String code, String message, String field, Object val
         return new FieldFailure(code, message, field, value);
     }
 
-    /**
-     * Creates a {@code FieldFailure} for the received arguments.
-     *
-     * @param message
-     *            error message
-     * @param field
-     *            name of the validated field
-     * @param code
-     *            failure code
-     * @param value
-     *            field value during the validation process
-     * @return {@code FieldValidationError} for the received arguments
-     */
-    public static FieldFailure of(final String message, final String field, final String code, final Object value) {
-        return new FieldFailure(code, message, field, value);
-    }
-
 }
