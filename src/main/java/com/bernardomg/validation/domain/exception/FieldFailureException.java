@@ -65,7 +65,7 @@ public class FieldFailureException extends RuntimeException {
     }
 
     public FieldFailureException(final FieldFailure failure) {
-        super(failure.getMessage());
+        super(failure.message());
 
         source = null;
         failures = Arrays.asList(failure);
@@ -79,7 +79,7 @@ public class FieldFailureException extends RuntimeException {
     }
 
     public FieldFailureException(final Serializable src, final FieldFailure failure) {
-        super(failure.getMessage());
+        super(failure.message());
 
         source = Objects.requireNonNull(src);
         failures = Arrays.asList(failure);

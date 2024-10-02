@@ -26,9 +26,6 @@ package com.bernardomg.validation.domain.model;
 
 import java.io.Serializable;
 
-import lombok.Builder;
-import lombok.Value;
-
 /**
  * Field error message. Usually represents an error when validation a single field from an object. The validation
  * process may generate several of these.
@@ -36,9 +33,7 @@ import lombok.Value;
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-@Value
-@Builder(setterPrefix = "with")
-public final class FieldFailure implements Serializable {
+public record FieldFailure(String code, String message, String field, Object value) implements Serializable {
 
     /**
      * Serialisation id.
@@ -61,12 +56,7 @@ public final class FieldFailure implements Serializable {
 
         message = String.format("%s.%s", field, code);
 
-        return FieldFailure.builder()
-            .withMessage(message)
-            .withField(field)
-            .withCode(code)
-            .withValue(value)
-            .build();
+        return new FieldFailure(code, message, field, value);
     }
 
     /**
@@ -83,32 +73,7 @@ public final class FieldFailure implements Serializable {
      * @return {@code FieldValidationError} for the received arguments
      */
     public static FieldFailure of(final String message, final String field, final String code, final Object value) {
-        return FieldFailure.builder()
-            .withMessage(message)
-            .withField(field)
-            .withCode(code)
-            .withValue(value)
-            .build();
+        return new FieldFailure(code, message, field, value);
     }
-
-    /**
-     * Code identifying the failure.
-     */
-    private final String code;
-
-    /**
-     * Name of the field which failed the validation.
-     */
-    private final String field;
-
-    /**
-     * The failure message.
-     */
-    private final String message;
-
-    /**
-     * The value which failed the validation.
-     */
-    private final Object value;
 
 }
