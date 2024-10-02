@@ -24,6 +24,8 @@
 
 package com.bernardomg.validation.domain.model;
 
+import java.util.Objects;
+
 /**
  * Failure object. Containing a message to tell which error ocurred.
  *
@@ -31,6 +33,11 @@ package com.bernardomg.validation.domain.model;
  *
  */
 public record Failure(String code, String message) {
+
+    public Failure {
+        Objects.requireNonNull(code, "Received null code");
+        Objects.requireNonNull(message, "Received null message");
+    }
 
     /**
      * Builds a failure with the received code.

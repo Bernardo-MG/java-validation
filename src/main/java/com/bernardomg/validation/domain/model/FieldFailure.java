@@ -25,6 +25,7 @@
 package com.bernardomg.validation.domain.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Field error message. Usually represents an error when validation a single field from an object. The validation
@@ -34,6 +35,13 @@ import java.io.Serializable;
  *
  */
 public record FieldFailure(String code, String message, String field, Object value) implements Serializable {
+
+    public FieldFailure {
+        Objects.requireNonNull(code, "Received null code");
+        Objects.requireNonNull(message, "Received null message");
+        Objects.requireNonNull(field, "Received null field");
+        Objects.requireNonNull(value, "Received null value");
+    }
 
     /**
      * Serialisation id.
