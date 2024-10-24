@@ -25,9 +25,7 @@
 package com.bernardomg.validation.domain.model;
 
 import java.io.Serializable;
-
-import lombok.Builder;
-import lombok.Value;
+import java.util.Objects;
 
 /**
  * Field error message. Usually represents an error when validation a single field from an object. The validation
@@ -36,9 +34,14 @@ import lombok.Value;
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-@Value
-@Builder(setterPrefix = "with")
-public final class FieldFailure implements Serializable {
+public record FieldFailure(String code, String message, String field, Object value) implements Serializable {
+
+    public FieldFailure {
+        Objects.requireNonNull(code, "Received null code");
+        Objects.requireNonNull(message, "Received null message");
+        Objects.requireNonNull(field, "Received null field");
+        Objects.requireNonNull(value, "Received null value");
+    }
 
     /**
      * Serialisation id.
@@ -61,54 +64,7 @@ public final class FieldFailure implements Serializable {
 
         message = String.format("%s.%s", field, code);
 
-        return FieldFailure.builder()
-            .withMessage(message)
-            .withField(field)
-            .withCode(code)
-            .withValue(value)
-            .build();
+        return new FieldFailure(code, message, field, value);
     }
-
-    /**
-     * Creates a {@code FieldFailure} for the received arguments.
-     *
-     * @param message
-     *            error message
-     * @param field
-     *            name of the validated field
-     * @param code
-     *            failure code
-     * @param value
-     *            field value during the validation process
-     * @return {@code FieldValidationError} for the received arguments
-     */
-    public static FieldFailure of(final String message, final String field, final String code, final Object value) {
-        return FieldFailure.builder()
-            .withMessage(message)
-            .withField(field)
-            .withCode(code)
-            .withValue(value)
-            .build();
-    }
-
-    /**
-     * Code identifying the failure.
-     */
-    private final String code;
-
-    /**
-     * Name of the field which failed the validation.
-     */
-    private final String field;
-
-    /**
-     * The failure message.
-     */
-    private final String message;
-
-    /**
-     * The value which failed the validation.
-     */
-    private final Object value;
 
 }

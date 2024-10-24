@@ -24,8 +24,7 @@
 
 package com.bernardomg.validation.domain.model;
 
-import lombok.Builder;
-import lombok.Value;
+import java.util.Objects;
 
 /**
  * Failure object. Containing a message to tell which error ocurred.
@@ -33,48 +32,11 @@ import lombok.Value;
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-@Value
-@Builder(setterPrefix = "with")
-public final class Failure {
+public record Failure(String code, String message) {
 
-    /**
-     * Builds a failure with the received code.
-     *
-     * @param code
-     *            failure code
-     * @return failure with the code
-     */
-    public static Failure of(final String code) {
-        return Failure.builder()
-            .withMessage(code)
-            .withCode(code)
-            .build();
+    public Failure {
+        Objects.requireNonNull(code, "Received null code");
+        Objects.requireNonNull(message, "Received null message");
     }
-
-    /**
-     * Builds a failure with the received message and code.
-     *
-     * @param message
-     *            failure message
-     * @param code
-     *            failure code
-     * @return failure with the code
-     */
-    public static Failure of(final String message, final String code) {
-        return Failure.builder()
-            .withMessage(message)
-            .withCode(code)
-            .build();
-    }
-
-    /**
-     * Code identifying the failure.
-     */
-    private final String code;
-
-    /**
-     * The failure message.
-     */
-    private final String message;
 
 }

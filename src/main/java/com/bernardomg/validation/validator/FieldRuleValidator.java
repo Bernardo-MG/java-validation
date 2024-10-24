@@ -64,13 +64,14 @@ public final class FieldRuleValidator<T> implements Validator<T> {
 
         log.debug("Validating {} with rules {}", obj, rules);
 
+        // Apply each rule on the object and collect failures
         failures = rules.stream()
             .map(r -> {
                 final Optional<FieldFailure> failure;
 
-                log.debug("Applying rule {}", r);
+                log.debug("Applying rule {} on {}", r, obj);
                 failure = r.check(obj);
-                log.debug("Applied rule {}, which returned failure {}", r, failure);
+                log.debug("Applied rule {} on {}, which returned failure {}", r, obj, failure);
 
                 return failure;
             })
@@ -79,7 +80,7 @@ public final class FieldRuleValidator<T> implements Validator<T> {
             .toList();
 
         if (!failures.isEmpty()) {
-            log.debug("Validated {} and generated failures: {}", obj, failures);
+            log.debug("Validated {} with failures: {}", obj, failures);
             if (obj instanceof final Serializable serializable) {
                 throw new FieldFailureException(serializable, failures);
             }

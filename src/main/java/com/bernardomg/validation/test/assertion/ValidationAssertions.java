@@ -25,6 +25,7 @@
 package com.bernardomg.validation.test.assertion;
 
 import org.assertj.core.api.Assertions;
+import org.assertj.core.api.InstanceOfAssertFactories;
 import org.assertj.core.api.SoftAssertions;
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 
@@ -48,13 +49,17 @@ public final class ValidationAssertions {
         final FieldFailureException exception;
 
         // Catch exception
-        exception = Assertions.catchThrowableOfType(callable, FieldFailureException.class);
+        exception = Assertions.catchThrowableOfType(FieldFailureException.class, callable);
 
         SoftAssertions.assertSoftly(softly -> {
             final FieldFailure failure;
 
             // There is a single failure
-            softly.assertThat(exception.getFailures())
+            softly.assertThat(exception)
+                .as("failures")
+                .isNotNull()
+                .extracting(FieldFailureException::getFailures)
+                .asInstanceOf(InstanceOfAssertFactories.LIST)
                 .hasSize(1);
 
             failure = exception.getFailures()
@@ -62,22 +67,21 @@ public final class ValidationAssertions {
                 .next();
 
             // Field
-            softly.assertThat(failure.getField())
-                .withFailMessage("Expected failure field '%s' but got '%s'", expected.getField(), failure.getField())
-                .isEqualTo(expected.getField());
+            softly.assertThat(failure.field())
+                .withFailMessage("Expected failure field '%s' but got '%s'", expected.field(), failure.field())
+                .isEqualTo(expected.field());
             // Code
-            softly.assertThat(failure.getCode())
-                .withFailMessage("Expected failure code '%s' but got '%s'", expected.getCode(), failure.getCode())
-                .isEqualTo(expected.getCode());
+            softly.assertThat(failure.code())
+                .withFailMessage("Expected failure code '%s' but got '%s'", expected.code(), failure.code())
+                .isEqualTo(expected.code());
             // Message
-            softly.assertThat(failure.getMessage())
-                .withFailMessage("Expected failure message '%s' but got '%s'", expected.getMessage(),
-                    failure.getMessage())
-                .isEqualTo(expected.getMessage());
+            softly.assertThat(failure.message())
+                .withFailMessage("Expected failure message '%s' but got '%s'", expected.message(), failure.message())
+                .isEqualTo(expected.message());
             // Value
-            softly.assertThat(failure.getValue())
-                .withFailMessage("Expected failure value '%s' but got '%s'", expected.getValue(), failure.getValue())
-                .isEqualTo(expected.getValue());
+            softly.assertThat(failure.value())
+                .withFailMessage("Expected failure value '%s' but got '%s'", expected.value(), failure.value())
+                .isEqualTo(expected.value());
         });
     }
 
