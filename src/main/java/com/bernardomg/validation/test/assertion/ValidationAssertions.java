@@ -49,7 +49,7 @@ public final class ValidationAssertions {
         final FieldFailureException exception;
 
         // Catch exception
-        exception = Assertions.catchThrowableOfType(callable, FieldFailureException.class);
+        exception = Assertions.catchThrowableOfType(FieldFailureException.class, callable);
 
         SoftAssertions.assertSoftly(softly -> {
             final FieldFailure failure;
