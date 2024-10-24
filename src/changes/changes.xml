@@ -32,12 +32,17 @@
             Deleted old validator.
          </action>
       </release>
-      <release version="0.2.1" date="2024-06-15" description="">
+      <release version="0.2.1" date="2024-10-24" description="Moved to records">
          <action dev="bmg" type="update">
             Moved to records.
          </action>
          <action dev="bmg" type="update">
             Updated dependencies.
+         </action>
+      </release>
+      <release version="0.2.2" date="2024-06-15" description="Allow rejected nulls">
+         <action dev="bmg" type="fix">
+            Allow rejected nulls.
          </action>
       </release>
    </body>

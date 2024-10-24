@@ -40,7 +40,6 @@ public record FieldFailure(String code, String message, String field, Object val
         Objects.requireNonNull(code, "Received null code");
         Objects.requireNonNull(message, "Received null message");
         Objects.requireNonNull(field, "Received null field");
-        Objects.requireNonNull(value, "Received null value");
     }
 
     /**
