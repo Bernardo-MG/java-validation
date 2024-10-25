@@ -227,6 +227,7 @@
             <scope>import</scope>
          </dependency>
          <dependency>
+            <!-- AssertJ BOM -->
             <groupId>org.assertj</groupId>
             <artifactId>assertj-bom</artifactId>
             <version>${assertj.version}</version>
@@ -302,15 +303,6 @@
          <version>${passay.version}</version>
       </dependency>
       <!-- ============================================== -->
-      <!-- ================ TEST SUPPORT ================ -->
-      <!-- ============================================== -->
-      <dependency>
-         <!-- AssertJ -->
-         <groupId>org.assertj</groupId>
-         <artifactId>assertj-core</artifactId>
-         <scope>provided</scope>
-      </dependency>
-      <!-- ============================================== -->
       <!-- ======= TEST ENVIRONMENT DEPENDENCIES ======== -->
       <!-- ============================================== -->
       <dependency>
@@ -337,6 +329,12 @@
          <artifactId>archunit-junit5</artifactId>
          <version>${archunit.version}</version>
          <scope>test</scope>
+      </dependency>
+      <dependency>
+         <!-- AssertJ -->
+         <groupId>org.assertj</groupId>
+         <artifactId>assertj-core</artifactId>
+         <scope>provided</scope>
       </dependency>
    </dependencies>
 
