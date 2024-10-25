@@ -42,28 +42,13 @@ public record FieldFailure(String code, String message, String field, Object val
         Objects.requireNonNull(field, "Received null field");
     }
 
+    public FieldFailure(final String code, final String field, final Object value) {
+        this(code, String.format("%s.%s", field, code), field, value);
+    }
+
     /**
      * Serialisation id.
      */
     private static final long serialVersionUID = 8492078591901480534L;
-
-    /**
-     * Creates a {@code FieldFailure} for the received arguments. The message will be generated from the arguments.
-     *
-     * @param field
-     *            name of the validated field
-     * @param code
-     *            failure code
-     * @param value
-     *            field value during the validation process
-     * @return {@code FieldValidationError} for the received arguments
-     */
-    public static FieldFailure of(final String field, final String code, final Object value) {
-        final String message;
-
-        message = String.format("%s.%s", field, code);
-
-        return new FieldFailure(code, message, field, value);
-    }
 
 }
