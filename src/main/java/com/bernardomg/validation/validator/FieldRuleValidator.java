@@ -81,6 +81,7 @@ public final class FieldRuleValidator<T> implements Validator<T> {
 
         if (!failures.isEmpty()) {
             log.debug("Validated {} with failures: {}", obj, failures);
+            // TODO: check this, it should include the source always
             if (obj instanceof final Serializable serializable) {
                 throw new FieldFailureException(serializable, failures);
             }
