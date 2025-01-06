@@ -40,7 +40,10 @@
             Updated dependencies.
          </action>
       </release>
-      <release version="1.0.0" date="2024-06-15" description="">
+      <release version="0.2.2" date="2024-06-15" description="Allow rejected nulls">
+         <action dev="bmg" type="fix">
+            Allow rejected nulls.
+         </action>
       </release>
    </body>
 </document>
