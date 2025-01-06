@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2023-2024 the original author or authors.
+ * Copyright (c) 2023-2025 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,7 +34,7 @@ import java.util.Objects;
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-public record FieldFailure(String code, String message, String field, Object value) implements Serializable {
+public record FieldFailure(String code, String field, String message, Object value) implements Serializable {
 
     public FieldFailure {
         Objects.requireNonNull(code, "Received null code");
@@ -42,28 +42,17 @@ public record FieldFailure(String code, String message, String field, Object val
         Objects.requireNonNull(field, "Received null field");
     }
 
+    public FieldFailure(final String code, final String field, final Object value) {
+        this(code, field, String.format("%s.%s", field, code), value);
+    }
+
+    public FieldFailure(final String code, final String field) {
+        this(code, field, String.format("%s.%s", field, code), null);
+    }
+
     /**
      * Serialisation id.
      */
     private static final long serialVersionUID = 8492078591901480534L;
-
-    /**
-     * Creates a {@code FieldFailure} for the received arguments. The message will be generated from the arguments.
-     *
-     * @param field
-     *            name of the validated field
-     * @param code
-     *            failure code
-     * @param value
-     *            field value during the validation process
-     * @return {@code FieldValidationError} for the received arguments
-     */
-    public static FieldFailure of(final String field, final String code, final Object value) {
-        final String message;
-
-        message = String.format("%s.%s", field, code);
-
-        return new FieldFailure(code, message, field, value);
-    }
 
 }

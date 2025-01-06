@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2023-2024 the original author or authors.
+ * Copyright (c) 2023-2025 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -62,26 +62,30 @@ public final class ValidationAssertions {
                 .asInstanceOf(InstanceOfAssertFactories.LIST)
                 .hasSize(1);
 
-            failure = exception.getFailures()
-                .iterator()
-                .next();
+            if (!exception.getFailures()
+                .isEmpty()) {
+                failure = exception.getFailures()
+                    .iterator()
+                    .next();
 
-            // Field
-            softly.assertThat(failure.field())
-                .withFailMessage("Expected failure field '%s' but got '%s'", expected.field(), failure.field())
-                .isEqualTo(expected.field());
-            // Code
-            softly.assertThat(failure.code())
-                .withFailMessage("Expected failure code '%s' but got '%s'", expected.code(), failure.code())
-                .isEqualTo(expected.code());
-            // Message
-            softly.assertThat(failure.message())
-                .withFailMessage("Expected failure message '%s' but got '%s'", expected.message(), failure.message())
-                .isEqualTo(expected.message());
-            // Value
-            softly.assertThat(failure.value())
-                .withFailMessage("Expected failure value '%s' but got '%s'", expected.value(), failure.value())
-                .isEqualTo(expected.value());
+                // Field
+                softly.assertThat(failure.field())
+                    .withFailMessage("Expected failure field '%s' but got '%s'", expected.field(), failure.field())
+                    .isEqualTo(expected.field());
+                // Code
+                softly.assertThat(failure.code())
+                    .withFailMessage("Expected failure code '%s' but got '%s'", expected.code(), failure.code())
+                    .isEqualTo(expected.code());
+                // Message
+                softly.assertThat(failure.message())
+                    .withFailMessage("Expected failure message '%s' but got '%s'", expected.message(),
+                        failure.message())
+                    .isEqualTo(expected.message());
+                // Value
+                softly.assertThat(failure.value())
+                    .withFailMessage("Expected failure value '%s' but got '%s'", expected.value(), failure.value())
+                    .isEqualTo(expected.value());
+            }
         });
     }
 

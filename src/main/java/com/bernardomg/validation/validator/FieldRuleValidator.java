@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2023-2024 the original author or authors.
+ * Copyright (c) 2023-2025 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -81,6 +81,7 @@ public final class FieldRuleValidator<T> implements Validator<T> {
 
         if (!failures.isEmpty()) {
             log.debug("Validated {} with failures: {}", obj, failures);
+            // TODO: check this, it should include the source always
             if (obj instanceof final Serializable serializable) {
                 throw new FieldFailureException(serializable, failures);
             }

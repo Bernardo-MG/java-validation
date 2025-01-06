@@ -22,7 +22,7 @@ public class FieldRuleValidatorTest {
         final ThrowingCallable execution;
 
         // WHEN
-        execution = () -> new FieldRuleValidator<>((obj -> Optional.of(FieldFailure.of("field", "code", obj))))
+        execution = () -> new FieldRuleValidator<>((obj -> Optional.of(new FieldFailure("code", "field", obj))))
             .validate("abc");
 
         // THEN
