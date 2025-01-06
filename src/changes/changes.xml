@@ -45,7 +45,13 @@
             Allow rejected nulls.
          </action>
       </release>
-      <release version="1.0.0" date="2024-06-15" description="">
+      <release version="0.2.3" date="2025-01-06" description="Cleanup">
+         <action dev="bmg" type="fix">
+            Small cleanup.
+         </action>
+         <action dev="bmg" type="update">
+            Updated dependencies.
+         </action>
       </release>
    </body>
 </document>
