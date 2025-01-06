@@ -34,7 +34,7 @@ import java.util.Objects;
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-public record FieldFailure(String code, String message, String field, Object value) implements Serializable {
+public record FieldFailure(String code, String field, String message, Object value) implements Serializable {
 
     public FieldFailure {
         Objects.requireNonNull(code, "Received null code");
@@ -43,7 +43,11 @@ public record FieldFailure(String code, String message, String field, Object val
     }
 
     public FieldFailure(final String code, final String field, final Object value) {
-        this(code, String.format("%s.%s", field, code), field, value);
+        this(code, field, String.format("%s.%s", field, code), value);
+    }
+
+    public FieldFailure(final String code, final String field) {
+        this(code, field, String.format("%s.%s", field, code), null);
     }
 
     /**
