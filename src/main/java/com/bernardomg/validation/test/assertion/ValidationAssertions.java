@@ -54,37 +54,44 @@ public final class ValidationAssertions {
         SoftAssertions.assertSoftly(softly -> {
             final FieldFailure failure;
 
-            // There is a single failure
-            softly.assertThat(exception)
-                .as("failures")
-                .isNotNull()
-                .extracting(FieldFailureException::getFailures)
-                .asInstanceOf(InstanceOfAssertFactories.LIST)
-                .hasSize(1);
+            if (exception == null) {
+                softly.assertThat(exception)
+                    .as("failures")
+                    .isNotNull();
+            } else {
 
-            if (!exception.getFailures()
-                .isEmpty()) {
-                failure = exception.getFailures()
-                    .iterator()
-                    .next();
+                // There is a single failure
+                softly.assertThat(exception)
+                    .as("failures")
+                    .isNotNull()
+                    .extracting(FieldFailureException::getFailures)
+                    .asInstanceOf(InstanceOfAssertFactories.LIST)
+                    .hasSize(1);
 
-                // Field
-                softly.assertThat(failure.field())
-                    .withFailMessage("Expected failure field '%s' but got '%s'", expected.field(), failure.field())
-                    .isEqualTo(expected.field());
-                // Code
-                softly.assertThat(failure.code())
-                    .withFailMessage("Expected failure code '%s' but got '%s'", expected.code(), failure.code())
-                    .isEqualTo(expected.code());
-                // Message
-                softly.assertThat(failure.message())
-                    .withFailMessage("Expected failure message '%s' but got '%s'", expected.message(),
-                        failure.message())
-                    .isEqualTo(expected.message());
-                // Value
-                softly.assertThat(failure.value())
-                    .withFailMessage("Expected failure value '%s' but got '%s'", expected.value(), failure.value())
-                    .isEqualTo(expected.value());
+                if (!exception.getFailures()
+                    .isEmpty()) {
+                    failure = exception.getFailures()
+                        .iterator()
+                        .next();
+
+                    // Field
+                    softly.assertThat(failure.field())
+                        .withFailMessage("Expected failure field '%s' but got '%s'", expected.field(), failure.field())
+                        .isEqualTo(expected.field());
+                    // Code
+                    softly.assertThat(failure.code())
+                        .withFailMessage("Expected failure code '%s' but got '%s'", expected.code(), failure.code())
+                        .isEqualTo(expected.code());
+                    // Message
+                    softly.assertThat(failure.message())
+                        .withFailMessage("Expected failure message '%s' but got '%s'", expected.message(),
+                            failure.message())
+                        .isEqualTo(expected.message());
+                    // Value
+                    softly.assertThat(failure.value())
+                        .withFailMessage("Expected failure value '%s' but got '%s'", expected.value(), failure.value())
+                        .isEqualTo(expected.value());
+                }
             }
         });
     }
