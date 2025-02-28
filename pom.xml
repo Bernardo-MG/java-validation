@@ -21,7 +21,7 @@
 
    <groupId>com.bernardomg.framework</groupId>
    <artifactId>validation</artifactId>
-   <version>0.2.3</version>
+   <version>1.0.0</version>
    <packaging>jar</packaging>
 
    <name>Validation</name>
