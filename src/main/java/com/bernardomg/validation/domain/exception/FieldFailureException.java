@@ -31,15 +31,12 @@ import java.util.Objects;
 
 import com.bernardomg.validation.domain.model.FieldFailure;
 
-import lombok.Getter;
-
 /**
  * Exception for field failures. Contains multiple field failures, all for the same object.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-@Getter
 public class FieldFailureException extends RuntimeException {
 
     /**
@@ -83,6 +80,14 @@ public class FieldFailureException extends RuntimeException {
 
         source = Objects.requireNonNull(src);
         failures = Arrays.asList(failure);
+    }
+
+    public Collection<FieldFailure> getFailures() {
+        return failures;
+    }
+
+    public Serializable getSource() {
+        return source;
     }
 
 }

@@ -29,10 +29,11 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.bernardomg.validation.domain.exception.FieldFailureException;
 import com.bernardomg.validation.domain.model.FieldFailure;
-
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * Validator which checks the fields of the received object. It will apply a collection of rules, throwing a
@@ -43,9 +44,12 @@ import lombok.extern.slf4j.Slf4j;
  * @param <T>
  *            type being validated
  */
-@Slf4j
 public final class FieldRuleValidator<T> implements Validator<T> {
 
+    /**
+     * Logger for the class.
+     */
+    private static final Logger          log           = LoggerFactory.getLogger(FieldRuleValidator.class);
     /**
      * The set of rules to apply.
      */
