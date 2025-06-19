@@ -58,7 +58,16 @@
             Updated dependencies.
          </action>
       </release>
-      <release version="0.3.0" date="2025-02-28" description="">
+      <release version="0.2.5" date="2025-06-20" description="Updated deployment">
+         <action dev="bmg" type="update">
+            Updated deployment.
+         </action>
+         <action dev="bmg" type="update">
+            Updated dependencies.
+         </action>
+         <action dev="bmg" type="remove">
+            Removed lombok.
+         </action>
       </release>
    </body>
 </document>
